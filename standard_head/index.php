@@ -34,7 +34,7 @@
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_agency1') {
                 include('report_agency1.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'logout') {
-                include('logout/index.php');
+                include('../logout/index.php');
                 }
                 ?>
                                         </div>
