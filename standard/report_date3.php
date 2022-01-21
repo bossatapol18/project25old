@@ -101,6 +101,7 @@ function datetodb($date)
                         <th class="">วันที่สร้าง</th> 
                         <th class="">วันที่แต่งตั้งสถานะ</th>    
                         <th class="">ชื่อมาตรฐาน</th> 
+                        <th class="">เลข มอก.</th>
                         <!-- <th class="">ประเภทผลิตภัณฑ์</th>
                         <th class="">กลุ่มผลิตภัณฑ์</th>
                         <th class="">ชื่อหน่วยงานศูนย์</th> -->
@@ -141,6 +142,7 @@ function datetodb($date)
                                             <td><?php echo datethai($row['standard_create']); ?></td>
                                             <td><?php echo datethai($row['standard_day']); ?></td>
                                             <td><?php echo $row["standard_detail"]; ?></td>
+                                            <td><?php echo $row["standard_number"]; ?></td>
                                             <!-- <td><?php echo $row['name_type']; ?></td>
                                             <td><?php echo $row['name_group']; ?></td>
                                             <td><?php echo $row["name_depart"]; ?></td> -->

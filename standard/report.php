@@ -22,7 +22,7 @@
                                                 <option value="" selected disabled>-กรุณาเลือก-</option>
                                                 <option value="?page=report_status1">รายงานรายสถานะของเอกสาร
                                                 <option value="?page=report_list1">รายงานรายชื่อศูนย์
-                                                <option value="?page=report_date1">รายงานตามช่วงเวลา
+                                                <option value="./standard/report_date3.php">รายงานตามช่วงเวลา
                                                 <option value="?page=report_number1">รายงานตามเลข มอก.
                                                 <option value="?page=report_agency1">รายงานตามหน่วยงานคู่แข่ง
                                             </select>

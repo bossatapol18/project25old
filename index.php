@@ -101,8 +101,8 @@
                     include('standard/report_status1.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_list1') {
                 include('standard/report_list1.php');
-                }elseif (isset($_GET['page']) && $_GET['page'] == 'report_date1') {
-                include('standard/report_date1.php');
+                // }elseif (isset($_GET['page']) && $_GET['page'] == 'report_date1') {
+                // include('standard/report_date3.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_number1') {
                 include('standard/report_number1.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_agency1') {
