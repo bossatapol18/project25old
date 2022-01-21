@@ -119,7 +119,7 @@ $query2 = sqlsrv_query($conn , $sql2);
                     <div class="card p-4 mt-3">
                         <h3 class="heading mt-5 text-center">ค้นหาเอกสารที่นี่</h3>
                         <div class="d-flex justify-content-center px-5">
-                            <div class="search"> <input type="text" class="search-input" placeholder="กรุณากรอกเลข มอก. ที่ต้องการค้นหา" name="txtKeyword" id="txtKeyword">
+                            <div class="search"> <input type="text" class="search-input" placeholder="กรุณากรอกเลข มอก. ที่ต้องการค้นหา" name="txtKeyword" id="txtKeyword" value="<?php echo $strKeyword ?>">
                                 <button class="search-icon" type="submit" value="ค้นหา"><i class="fa fa-search"></i></button>
                                 <!-- <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a>  -->
                             </div>

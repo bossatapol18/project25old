@@ -195,7 +195,7 @@ if ($mode == "insert_data") {
     $date = date("Y-m-d");
     //เพิ่มไฟล์
     $upload = $_FILES['fileupload'];
-     print_r($upload);
+     //print_r($upload);
     $count_upload = count($upload['name']);
 
     for ($i = 0; $i < $count_upload; $i++) {
@@ -217,7 +217,7 @@ if ($mode == "insert_data") {
             $newname        = $date .  $numrand . $type; //ตั้งชื่อใหม่เรียงวันที่ ตัวเลขที่สุม และนามสกุลไฟล์
             $path_copy      = $path . $newname; //กำหนดpath
             //$path_link      = "/fileupload/" . $newname; //กำหนดlink
-            echo $file_name;
+            //echo $file_name;
             // copy($fltem, $path_copy
             copy($file_tmp_name, $path_copy); //คัดลอกไwล์
 

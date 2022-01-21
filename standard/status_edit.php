@@ -19,7 +19,7 @@ $date_today = (date('d/m/Y H:i:s'));
                 <div class="row">
                     <div class="col-lg-12">
                         <div align="left">
-                            <a class="btn btn-sm " style="background-color:#FFD700;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
+                            <a class="btn btn-lg " style="background-color:#FFD700;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
                         </div>
                         <div class="section-title">
                             <h2>แก้ไขเอกสาร</h2>
@@ -157,7 +157,7 @@ $date_today = (date('d/m/Y H:i:s'));
 
 
                                 <!-- หลายฟอร์ม -->
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <div class="card mt-4">
                                         <div class="card-body">
                                             <div class="">
@@ -173,8 +173,11 @@ $date_today = (date('d/m/Y H:i:s'));
                                                     ?>
                                                     <input style="display:none;" type="text" name="id_dimension_file[]" class="form-control" value="<?php echo $file_id ?>">
 
-                                                    <input type="file" name="fileupload[]" class="form-control" value="<?php echo $file_name ?>">
-
+                                                    <div class="input-group">
+                                                        <input type="text" name="id_dimension_file[]" class="form-control" id="id_dimension_file" value="<?php echo $file_name ?>" disabled>
+                                                        <input type="file" name="fileupload[]" class="form-control" value="<?php echo $file_name ?>"> 
+                                                    </div>
+                                                   
 
                                                 <?php } ?>
                                                 <div class="main-form1 mt-3 " id="main5">
@@ -200,17 +203,16 @@ $date_today = (date('d/m/Y H:i:s'));
                                     </div>
                                 </div>
 
-                            </div>
+                            
 
 
                             <!-- หลายฟอร์ม -->
-                            <div class="main-form mt-3 ">
-                                <div class="row">
-                                    <div class="col-md-8">
+                            
+                                    <div class="col-md-4 mt-4">
                                         <div class="card mt-8">
                                             <div class="card-body">
                                                 <div class="">
-                                                    <div class="form-group mb-2">
+                                                    <div class="form-group mb-2 ">
                                                         <label for="">กลุ่มผลิตภัณฑ์</label>
                                                         <a href="javascript:void(0)" onclick="add_element('main4','sub_main4');" class=" float-end btn btn-success">เพิ่ม</a>
                                                         <?php
@@ -219,7 +221,8 @@ $date_today = (date('d/m/Y H:i:s'));
                                                         $query1 = sqlsrv_query($conn, $sql);
                                                         while ($result = sqlsrv_fetch_array($query1, SQLSRV_FETCH_ASSOC)) { ?>
                                                             <?php $group =  $result['group_id']; ?>
-                                                            <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;">
+                                                            <div class="input-group mt-3">
+                                                                 <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;">
                                                                 <option value="">กรุณาเลือกกลุ่มผลิตภัณฑ์</option>
                                                                 <?php
                                                                 $sql2 = "SELECT * FROM group_tb";
@@ -234,11 +237,17 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                 ?>
 
                                                                     <option value="<?php echo $result2['group_id'];  ?>" <?php echo $c; ?>><?php echo $result2['group_name']; ?>
-                                                                    </option>
+                                                                    
+                                                                </option>
+
                                                                 <?php } ?>
+
                                                                 <input style="display:none;" type="text" name="id_dimension_group[]" class="form-control" value="<?php echo $result["id_dimension_group"] ?>">
                                                             </select>
-
+                                                            <a href="standard/delete_edit.php?id_dimension_group=<?php echo $result["id_dimension_group"] ?>" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger">ลบ</a>
+                                                            </div>
+                                                           
+                                                            
 
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main4">
@@ -271,15 +280,12 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
+                                
 
 
                             <!-- หลายฟอร์ม -->
-                            <div class="main-form1 mt-3 ">
-                                <div class="row">
-                                    <div class="col-md-8">
+                            
+                                    <div class="col-md-4 mt-4">
                                         <div class="card mt-8">
                                             <div class="card-body">
                                                 <div class="">
@@ -292,8 +298,10 @@ $date_today = (date('d/m/Y H:i:s'));
                                                         $query2 = sqlsrv_query($conn, $sql2);
                                                         while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
                                                             <?php $agency =  $result2['agency_id']; ?>
+                                                            <div class="input-group mt-3">
                                                             <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
-                                                                <option value="">กรุณาเลือกหน่วยงานคู่แข่ง</option>
+                                                            
+                                                                 <option value="">กรุณาเลือกหน่วยงานคู่แข่ง</option>
                                                                 <?php
                                                                 $sql22 = "SELECT * FROM agency_tb";
                                                                 $query22 = sqlsrv_query($conn, $sql22);
@@ -311,6 +319,10 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                 <?php } ?>
                                                                 <input style="display:none;" type="text" name="id_dimension_agency[]" class="form-control" value="<?php echo $result2["id_dimension_agency"] ?>">
                                                             </select>
+                                                            <a href="standard/delete_id_dimension_agency.php?id_dimension_agency=<?php echo $result2["id_dimension_agency"] ?>" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger">ลบ</a>
+                                                            </div>
+                                                               
+
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main10">
 
@@ -339,15 +351,12 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
+                              
 
 
                             <!-- หลายฟอร์ม -->
-                            <div class="main-form2 mt-3 ">
-                                <div class="row">
-                                    <div class="col-md-8">
+                            
+                                    <div class="col-md-6 mt-4">
                                         <div class="card mt-8">
                                             <div class="card-body">
                                                 <div class="">
@@ -361,7 +370,8 @@ $date_today = (date('d/m/Y H:i:s'));
                                                         $query3 = sqlsrv_query($conn, $sql3);
                                                         while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
                                                             <?php $department =  $result3['department_id']; ?>
-                                                            <select class="form-control" name="department_id[]" id="department_id" style="height: unset !important;">
+                                                            <div class="input-group mt-3">
+                                                                  <select class="form-control" name="department_id[]" id="department_id" style="height: unset !important;">
                                                                 <option value="">กรุณาเลือกหน่วยงานที่ขอ</option>
                                                                 <?php
                                                                 $sql33 = "SELECT * FROM department_tb";
@@ -380,6 +390,10 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                 <?php } ?>
                                                                 <input style="display:none;" type="text" name="id_dimension_department[]" class="form-control" value="<?php echo $result3["id_dimension_department"] ?>">
                                                             </select>
+                                                            <a href="standard/delete_id_dimension_department.php?id_dimension_department=<?php echo $result3["id_dimension_department"] ?>" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger">ลบ</a>
+                                                            </div>
+                                                          
+
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main15">
 
@@ -407,15 +421,13 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                              
 
 
 
                             <!-- หลายฟอร์ม -->
-                            <div class="main-form3 mt-3 ">
-                                <div class="row">
-                                    <div class="col-md-8">
+                            
+                                    <div class="col-md-6 mt-4">
                                         <div class="card mt-8">
                                             <div class="card-body">
                                                 <div class="">
@@ -429,7 +441,8 @@ $date_today = (date('d/m/Y H:i:s'));
                                                         $query4 = sqlsrv_query($conn, $sql4);
                                                         while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
                                                             <?php $type =  $result4['type_id']; ?>
-                                                            <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;">
+                                                            <div class="input-group mt-3">
+                                                                <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;">
                                                                 <option value="">กรุณาเลือกประเภทผลิตภัณฑ์</option>
                                                                 <?php
                                                                 $sql44 = "SELECT * FROM type_tb";
@@ -449,6 +462,10 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                 <input style="display:none;" type="text" name="id_dimension_type[]" class="form-control" value="<?php echo $result4["id_dimension_type"] ?>">
 
                                                             </select>
+                                                            <a href="standard/delete_id_dimension_type.php?id_dimension_type=<?php echo $result4["id_dimension_type"] ?>" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger">ลบ</a> 
+                                                            </div>
+                                                           
+
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main16">
 
@@ -477,8 +494,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                
                     </div>
                 </div>
 

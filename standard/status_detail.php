@@ -28,7 +28,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                             class="btn btn-sm btn-warning text-white" style="font-size:20px;">แก้ไขข้อมูลสถานะ</a>
                             <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>"
                             onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
-                            class="btn btn-sm btn-warning text-white" style="font-size:20px;">พิมพ์รายงาน</a>
+                            class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
                         <a href="?page=delete&standard_idtb=<?= $result['standard_idtb'] ?>"
                             onclick="return confirm('คุณต้องการลบเอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
                             class="btn btn-sm btn-danger"style="font-size:20px;">ลบเอกสาร</a>

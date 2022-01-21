@@ -19,7 +19,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-lg-12">
-                        <a class="btn btn-sm " style="background-color:#FFD700;"
+                        <a class="btn btn-lg " style="background-color:#FFD700;"
                             onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
                         <div class="section-title">
 
@@ -117,7 +117,7 @@
                         </div>
 
                         <!-- หลายฟอร์ม -->
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
@@ -149,7 +149,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
@@ -203,7 +203,7 @@
                         <!--  -->
 
                         <!-- หลายฟอร์ม -->
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
@@ -258,7 +258,7 @@
                         <!--  -->
 
                         <!-- หลายฟอร์ม -->
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
@@ -310,7 +310,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
