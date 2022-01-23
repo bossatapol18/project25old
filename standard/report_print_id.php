@@ -64,7 +64,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 <body>
     <form action="" method="post">
         <div class="container" style="text-align:center;">
-            <img src="./standard/tistr_sitename.jpg">
+            <img src="./standard/tistr_sitename.png">
             <h3>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h3>
             <h3>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h3>
             <h3 style="text-align:left;">รายงานเอกสาร หมายเลขเอกสาร : <u><?= $row['standard_idtb']; ?></u></h3>

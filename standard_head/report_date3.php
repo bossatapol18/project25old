@@ -120,9 +120,11 @@ function datetodb($date)
                                 $from_date = datetodb($_GET['from_date']);
                                 $to_date = datetodb($_GET['to_date']);
 
-                                $query = "SELECT  DISTINCT standard_create as cc ,standard_day as dd ,standard_detail as ee ,standard_number as gg ,
-                                COUNT(*) as standard_idtb  FROM main_std  WHERE standard_create BETWEEN '$from_date' AND '$to_date' 
-                                GROUP BY standard_detail,standard_create,standard_day,standard_number,standard_idtb
+                                $query = "SELECT  DISTINCT standard_create as cc ,standard_day as dd ,standard_detail as ee 
+                                ,standard_number as gg , main_std.standard_status,vv.id_statuss,vv.statuss_name AS vvv ,
+                                COUNT(*) as standard_idtb  FROM main_std 
+                                INNER JOIN select_status vv ON main_std.standard_status = vv.id_statuss  WHERE standard_create BETWEEN '$from_date' AND '$to_date' 
+                                GROUP BY standard_detail,standard_create,standard_day,standard_number,standard_idtb ,standard_status,id_statuss,statuss_name
                                ";
                                 $query_run = sqlsrv_query($conn, $query);
 
@@ -135,7 +137,7 @@ function datetodb($date)
                                             <td><?php echo datethai($row['dd']); ?></td>
                                             <td><?php echo $row["ee"]; ?></td>
                                             <td><?php echo $row["gg"]; ?></td>
-    
+                                            <td><?php echo $row["vvv"]; ?></td>
                                         </tr>
                             <?php
                                     }
