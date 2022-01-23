@@ -120,18 +120,10 @@ function datetodb($date)
                                 $from_date = datetodb($_GET['from_date']);
                                 $to_date = datetodb($_GET['to_date']);
 
-                                $query = "SELECT * , a.standard_status,b.id_statuss,b.statuss_name AS name_status , 
-                                 d.type_id,e.type_id,e.type_name AS name_type , j.group_id,k.group_id,k.group_name AS name_group ,
-                                 l.department_id,m.department_id,m.department_name AS name_depart ,  a.standard_idtb,n.standard_idtb,n.fileupload AS name_file FROM main_std a
-                                    INNER JOIN select_status b ON a.standard_status = b.id_statuss 
-                                    INNER JOIN dimension_type d ON a.standard_idtb = d.standard_idtb 
-                                    INNER JOIN type_tb e ON d.type_id = e.type_id  
-                                    INNER JOIN dimension_group j ON a.standard_idtb = j.standard_idtb
-                                    INNER JOIN group_tb k ON j.group_id = k.group_id 
-                                    INNER JOIN  dimension_department l ON a.standard_idtb = l.standard_idtb
-                                    INNER JOIN department_tb m ON l.department_id = m.department_id 
-                                    INNER JOIN dimension_file n ON a.standard_idtb = n.standard_idtb
-                                    WHERE standard_create BETWEEN '$from_date' AND '$to_date' ";
+                                $query = "SELECT  DISTINCT standard_create as cc ,standard_day as dd ,standard_detail as ee ,standard_number as gg ,
+                                COUNT(*) as standard_idtb  FROM main_std  WHERE standard_create BETWEEN '$from_date' AND '$to_date' 
+                                GROUP BY standard_detail,standard_create,standard_day,standard_number,standard_idtb
+                               ";
                                 $query_run = sqlsrv_query($conn, $query);
 
                                 if ($query_run > 0) {
@@ -139,15 +131,11 @@ function datetodb($date)
                             ?>
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><?php echo datethai($row['standard_create']); ?></td>
-                                            <td><?php echo datethai($row['standard_day']); ?></td>
-                                            <td><?php echo $row["standard_detail"]; ?></td>
-                                            <td><?php echo $row["standard_number"]; ?></td>
-                                            <!-- <td><?php echo $row['name_type']; ?></td>
-                                            <td><?php echo $row['name_group']; ?></td>
-                                            <td><?php echo $row["name_depart"]; ?></td> -->
-                                            <td><?php echo $row["name_status"]; ?></td>
-                                            <!-- <td><?php echo $row["name_file"]; ?></td> -->
+                                            <td><?php echo datethai($row['cc']); ?></td>
+                                            <td><?php echo datethai($row['dd']); ?></td>
+                                            <td><?php echo $row["ee"]; ?></td>
+                                            <td><?php echo $row["gg"]; ?></td>
+    
                                         </tr>
                             <?php
                                     }
