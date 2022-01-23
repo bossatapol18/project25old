@@ -142,20 +142,20 @@ $query2 = sqlsrv_query($conn , $sql2);
                         value="<?php echo $strKeyword;?>">
                     <button class="btn btn-primary" type="submit" value="ค้นหา">ค้นหา</button>
                 </div> -->
-                <table class="table table-hover table-responsive-xl table-striped text-center pt-5"
+                <table class="table table-hover table-responsive-xl  text-center pt-5"
                     style="background-color: white;" id="tableall">
                     <thead>
                         <tr>
-                            <th class="col-1">ลำดับที่</th>
-                            <th class="col-1">วันที่เพิ่มเอกสาร</th>
-                            <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
-                            <th class="col-1">เลขที่มอก.</th>
-                            <th class="col-1">ชื่อมาตรฐาน</th>
-                            <th class="col-2">วันที่แต่งตั้งสถานะ</th>
+                            <th class="col-1 text-center">ลำดับที่</th>
+                            <th class="col-1 text-center">วันที่เพิ่มเอกสาร</th>
+                            <th class="col-2 text-center">วาระจากในที่ประชุมสมอ.</th>
+                            <th class="col-1 text-center">เลขที่มอก.</th>
+                            <th class="col-1 text-center">ชื่อมาตรฐาน</th>
+                            <th class="col-2 text-center">วันที่แต่งตั้งสถานะ</th>
                             <!-- <th class="col-1">เลขที่เอกสาร</th> -->
-                            <th class="col-2">สถานะ</th>
-                            <th class="col-1">ไฟล์แนบ</th>
-                            <th class="col-2">เมนูจัดการ</th>
+                            <th class="col-2 text-center">สถานะ</th>
+                            <th class="col-1 text-center">ไฟล์แนบ</th>
+                            <th class="col-2 text-center">เมนูจัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -174,29 +174,29 @@ $query2 = sqlsrv_query($conn , $sql2);
                             <td class="align-middle"><?= dateThai($data['standard_day']) ;?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 1 ) : ?>
-                            <td class="align-middle " style="background-color: #daf7a6"><?= $data['name_status'] ?></td>
+                            <td class="align-middle bg-c-g " style=""><?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 2 ) : ?>
-                            <td class="align-middle  text-lighred" style="background-color: #daf7a6">
+                            <td class="align-middle  text-lighred bg-c-g" style="">
                                 <?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 3 ) : ?>
-                            <td class="align-middle" style="background-color: #daf7a6"><?= $data['name_status'] ?></td>
+                            <td class="align-middle bg-c-g" style=""><?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 4 ) : ?>
-                            <td class="align-middle " style="background-color : #daf7a6 ;">
+                            <td class="align-middle bg-c-g" style="">
                                 <?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 5  ) : ?>
-                            <td class="align-middle " style="background-color :#daf7a6 ;">
+                            <td class="align-middle bg-c-g" style=" ">
                                 <?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 6  ) : ?>
-                            <td class="align-middle " style="background-color :#daf7a6 ;">
+                            <td class="align-middle bg-c-g" style=" ">
                                 <?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <?php if($data['id_statuss'] == 7  ) : ?>
-                            <td class="align-middle bg-danger">
+                            <td class="align-middle bg-c-r">
                                 <?= $data['name_status'] ?></td>
                             <?php endif ; ?>
                             <td class="align-middle">

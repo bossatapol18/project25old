@@ -30,7 +30,7 @@ $i=1;
    <td>'.$row["name_agency"].'</td>
    <td>'.$row["standard_detail"].'</td>
    <td>'.$row["standard_number"].'</td>
-   <td>'.$row["standard_mandatory"].'</td>
+  
    <td>'.$row["name_status"].'</td>
    <td>'.$row["standard_day"].'</td>
   </tr>

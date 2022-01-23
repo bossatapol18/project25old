@@ -20,9 +20,9 @@ $statement = sqlsrv_query($conn,$query);
                         <tr>
                             <th class="col-1">ลำดับที่</th>
                             <th class="col-2">หน่วยงานคู่แข่ง</th>
-                            <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
+                            <th class="col-2">ชื่อมาตรฐาน</th>
                             <th class="col-1">เลขที่มอก.</th>
-                            <th class="col-1">ชื่อมาตรฐาน</th>
+                            
                             <th class="col-1">สถานะ</th>
                             <th class="col-1">วันที่แต่งตั้งสถานะ</th>
                         </tr>
