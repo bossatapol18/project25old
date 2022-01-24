@@ -11,17 +11,17 @@
             <div class="  tab-content font">
                 <div id="home" class="container-fluid tab-pane active m-2">
                     <div class="container">
-                        <div class="col-md-6">
+                        <div class="col-md-11">
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
                                         <div class="pd-t">
                                             
-                                        <h3 class="font-mirt"><label><a href="?page=report_status1">รายงานรายสถานะของเอกสาร</a></label><br><br>
-                                            <label> <a href="?page=report_list1">รายงานรายชื่อศูนย์</a></label><br><br>
-                                            <label> <a href="./report_date3.php">รายงานตามช่วงเวลา</a></label><br><br>
-                                            <label> <a href="?page=report_number1">รายงานตามเลข มอก.</a></label><br><br>
-                                            <label> <a href="?page=report_agency1">รายงานตามหน่วยงานคู่แข่ง</a></label><br><br>
+                                        <h1 class="font-mirt"><label><a href="?page=report_status1">1. รายงานรายสถานะของเอกสาร</a></label><br><br>
+                                            <label> <a href="?page=report_list1">2. รายงานรายชื่อศูนย์</a></label><br><br>
+                                            <label> <a href="./report_date3.php">3. รายงานตามช่วงเวลา</a></label><br><br>
+                                            <label> <a href="?page=report_number1">4. รายงานตามเลข มอก.</a></label><br><br>
+                                            <label> <a href="?page=report_agency1">5. รายงานตามหน่วยงานคู่แข่ง</a></label><br><br>
                                        
                                             <br>
                                         </div>

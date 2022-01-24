@@ -15,8 +15,8 @@ $statement = sqlsrv_query($conn,$query);
             <br />
             <div class="table table-bordered">
                 <?PHP ob_start();?>
-                <table class="table" style="background-color: white;" id="tableall">
-                    <thead>
+                <table class="table" style="background-color:#ccf5ff;" id="tableall">
+                        <thead style="background-color:#008fb3;">
                         <tr>
                             <th class="col-1">ลำดับที่</th>
                             <!-- <th class="col-2">วาระจากในที่ประชุมสมอ.</th> -->

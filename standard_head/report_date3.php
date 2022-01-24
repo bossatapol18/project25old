@@ -24,7 +24,7 @@ function datetodb($date)
 
     <div class="container">
         <div class="container" style="width:900px;">
-            <h2 align="center">รายงานเอกสารตามช่วงเวลา</h2>
+            <h2 align="center">รายงานเอกสารตามช่วงเวลา </h2><br><h4 align="center">(จากวันที่เพิ่มเอกสาร)</h4>
             <div class="card mt-5">
 
                 <div class="card-body">
@@ -94,8 +94,8 @@ function datetodb($date)
 
             <div class="card mt-4">
                 <div class="card-body">
-                    <table class="table table-borderd">
-                        <thead>
+                <table class="table" style="background-color:#ccf5ff;" id="tableall">
+                        <thead style="background-color:#008fb3;">
                         <tr>
                         <th >ลำดับที่</th>   
                         <th class="">วันที่สร้าง</th> 

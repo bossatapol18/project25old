@@ -21,7 +21,7 @@
          <li><a href="?page=add_department">เพิ่มหน่วยงานที่ขอ</a></li>
        </ul>
        </li>
-       <li><a class="nav-link scrollto" href="?page=contact">ติดต่อเรา</a></li>
+       <!-- <li><a class="nav-link scrollto" href="?page=contact">ติดต่อเรา</a></li> -->
        <li class="dropdown"><a href="#"><span>สวัสดีคุณ <?=$_SESSION['user_login'] ; ?> || ตำแหน่ง : <?=$_SESSION['role_login'] ; ?></span> <i class="bi bi-chevron-down"></i></a>
            <ul>
          <li><a href="?page=logout" onclick="return confirm('คุณต้องการออกจากระบบหรือไม่')" >ออกจากระบบ</a></li>
