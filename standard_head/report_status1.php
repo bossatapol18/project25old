@@ -21,7 +21,7 @@
                             <tr>
                                 <th class="col-1">ลำดับที่</th>
                                 <th class="col-2">สถานะ</th>
-                                <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
+                                <!-- <th class="col-2">วาระจากในที่ประชุมสมอ.</th> -->
                                 <th class="col-1">เลขที่มอก.</th>
                                 <th class="col-1">ชื่อมาตรฐาน</th>
                                 <th class="col-2">วันที่แต่งตั้งสถานะ</th>

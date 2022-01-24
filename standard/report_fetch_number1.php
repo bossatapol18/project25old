@@ -21,7 +21,7 @@ $i=1;
   <table class="table table-bordered">
   <tr>
    <td>'.$i++.'</td>
-   <td>'.$row["standard_meet"].'</td>
+  
    <td>'.$row["standard_number"].'</td>
    <td>'.$row["standard_detail"].'</td>
    <td>'.$row["name_status"].'</td>
