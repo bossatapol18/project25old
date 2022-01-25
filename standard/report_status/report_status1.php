@@ -19,12 +19,16 @@
                     <table class="table" style="background-color:#ccf5ff;" id="tableall">
                         <thead style="background-color:#008fb3;">
                             <tr>
-                                <th class="col-1">ลำดับที่</th>
-                                <th class="col-2">สถานะ</th>
-                                <!-- <th class="col-2">วาระจากในที่ประชุมสมอ.</th> -->
-                                <th class="col-1">เลขที่มอก.</th>
-                                <th class="col-1">ชื่อมาตรฐาน</th>
-                                <th class="col-2">วันที่แต่งตั้งสถานะ</th>
+                            <th>ลำดับที่</th>
+                                <th>ที่มาจากการประชุม</th>
+                                <th class="text-white" style="background-color: green;">สถานะ</th>
+                                <th class="text-white" style="background-color: green;">วันที่แต่งตั้งสถานะ</th>
+                                <!-- <th class="text-white" style="background-color: green;" >คู่แข่ง</th> -->
+                                <th class="1 selectt">ชื่อมาตรฐาน</th>
+                                <th class="2 selectt">ประเภทผลิตภัณฑ์</th>
+                                <th class="3 selectt">กลุ่มผลิตภัณฑ์</th>
+                                <th class="4 selectt">ชื่อหน่วยงานศูนย์</th>
+                                <th class="6 selectt">ไฟล์แนบ</th>
                             </tr>
                         </thead>
                         <tbody>

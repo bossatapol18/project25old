@@ -98,7 +98,7 @@
                     include('standard/contact.php');
                     //report
                 } elseif (isset($_GET['page']) && $_GET['page'] == 'report_status1') {
-                    include('standard/report_status1.php');
+                    include('standard/report_status/index.php');
                 }elseif (isset($_GET['page']) && $_GET['page'] == 'report_list1') {
                 include('standard/report_list1.php');
                 // }elseif (isset($_GET['page']) && $_GET['page'] == 'report_date1') {
