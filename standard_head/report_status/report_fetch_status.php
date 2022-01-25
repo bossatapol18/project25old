@@ -1,4 +1,4 @@
-
+<?php include('./pdf.php'); ?>
 <?php
 require('../connection/connection.php');
 if(($_POST['query']) != '')
@@ -25,7 +25,7 @@ $i=1;
   <tr>
    <td>'.$i++.'</td>
    <td>'.$row["name_status"].'</td>
-  
+   <td>'.$row["standard_meet"].'</td>
    <td>'.$row["standard_number"].'</td>
    <td>'.$row["standard_detail"].'</td>
    <td>'.$row["standard_day"].'</td>

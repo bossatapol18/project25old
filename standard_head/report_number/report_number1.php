@@ -1,16 +1,16 @@
 <?php
-$query = "SELECT * from agency_tb ";
+$query = "SELECT * from main_std ";
 $statement = sqlsrv_query($conn,$query);
 ?>
 <div class="container">
         <form action="" method="post">   
-            <h1 align="center">รายงานหน่วยงานคู่แข่ง</h1>
-             <select name="search_agency" id="search_agency" multiple class="form-control selectpicker">
+            <h1 align="center">รายงานตามเลข มอก.</h1>
+             <select name="search_number" id="search_number" multiple class="form-control selectpicker">
                 <?php while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) : ?>
-                <option value="<?php echo $row["agency_id"] ; ?>"><?php  echo $row["agency_name"] ; ?></option>
+                <option value="<?php echo $row["standard_idtb"] ; ?>"><?php  echo $row["standard_number"] ; ?></option>
                 <?php endwhile ; ?>
             </select>
-            <input type="hidden" name="agency" id="agency" />
+            <input type="hidden" name="number" id="number" />
             <div style="clear:both"></div>
             <br />
             <div class="table table-bordered">
@@ -19,12 +19,11 @@ $statement = sqlsrv_query($conn,$query);
                         <thead style="background-color:#008fb3;">
                         <tr>
                             <th class="col-1">ลำดับที่</th>
-                            <th class="col-2">หน่วยงานคู่แข่ง</th>
-                            <th class="col-2">ชื่อมาตรฐาน</th>
+                            <!-- <th class="col-2">วาระจากในที่ประชุมสมอ.</th> -->
                             <th class="col-1">เลขที่มอก.</th>
-                            
-                            <th class="col-1">สถานะ</th>
-                            <th class="col-1">วันที่แต่งตั้งสถานะ</th>
+                            <th class="col-1">ชื่อมาตรฐาน</th>
+                            <th class="col-2">สถานะ</th>
+                            <th class="col-2">วันที่แต่งตั้งสถานะ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +44,7 @@ $statement = sqlsrv_query($conn,$query);
 
             function load_data(query = '') {
                 $.ajax({
-                    url: "./report_fetch_agency1.php",
+                    url: "./standard/report_fetch_number1.php",
                     method: "POST",
                     data: {
                         query: query
@@ -55,9 +54,9 @@ $statement = sqlsrv_query($conn,$query);
                     }
                 })
             }
-            $('#search_agency').change(function() {
-                $('#agency').val($('#search_agency').val());
-                var query = $('#search_agency').val();
+            $('#search_number').change(function() {
+                $('#number').val($('#search_number').val());
+                var query = $('#search_number').val();
                 load_data(query);
                 // console.log(query);
             });

@@ -24,7 +24,7 @@ function datetodb($date)
 
     <div class="container">
         <div class="container" style="width:900px;">
-            <h2 align="center">รายงานเอกสารตามช่วงเวลา </h2><br><h4 align="center">(จากวันที่เพิ่มเอกสาร)</h4>
+            <h2 align="center">รายงานเอกสารตามช่วงเวลา</h2><br><h4 align="center">(จากวันที่เพิ่มเอกสาร)</h4>
             <div class="card mt-5">
 
                 <div class="card-body">
@@ -113,8 +113,8 @@ function datetodb($date)
 
                             <?php
                             $i = 1;
-                            require '../connection/connection.php';
-                            require '../standard/date.php';
+                            require 'connection.php';
+                            require 'date.php';
 
                             if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                                 $from_date = datetodb($_GET['from_date']);
