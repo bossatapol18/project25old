@@ -38,8 +38,8 @@ $result = sqlsrv_query($conn,$query);
 		<div style="clear:both"></div>
 		<br />
 		<div class="table-responsive">
-			<table class="table table-striped table-bordered">
-				<thead>
+		<table class="table" style="background-color:#ccf5ff;" id="tableall">
+                        <thead style="background-color:#008fb3;">
 					<tr>
 					<th>ลำดับที่</th>
 					<th>เลขที่ มอก.</th>
