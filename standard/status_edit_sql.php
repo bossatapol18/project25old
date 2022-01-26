@@ -1,6 +1,4 @@
-
 <?php
-
 function datetodb($date)
 //    23/04/2564
 {
@@ -10,7 +8,8 @@ function datetodb($date)
     $dateme = $year . '-' . $month . '-' . $day;
     return $dateme; //return ส่งค่ากลับไป
 }
-
+?>
+<?php
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
     $sql = "SELECT *  , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
@@ -18,9 +17,6 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query);
 }
-
-
-
 
 if (isset($_POST) && !empty($_POST)) {
 
@@ -192,6 +188,23 @@ if (isset($_POST) && !empty($_POST)) {
             $insert_type = sqlsrv_query($conn, $sql_insert_type, $value_type);
         }
     }
+
+     //ประเภทมาตรฐาน
+     $count_manda = count($_REQUEST['id_dimension_manda']);
+
+     for ($i = 0; $i < $count_manda; $i++) {
+         $id_dimension_manda = $_REQUEST['id_dimension_manda'][$i];
+         $manda_id = $_REQUEST['manda_id'][$i];
+         if ($id_dimension_manda != '' && $manda_id != '') {
+             $sql_update_manda = " UPDATE dimension_manda SET manda_id = '$manda_id' WHERE id_dimension_manda = '$id_dimension_manda'";
+             $show_manda = sqlsrv_query($conn, $sql_update_manda);
+         }
+         if ($id_dimension_manda == '' && $manda_id != '') {
+             $sql_insert_manda = "INSERT INTO dimension_manda (standard_idtb,manda_id) VALUES (?,?);";
+             $value_manda = array($standard_idtb, $manda_id);
+             $insert_manda = sqlsrv_query($conn, $sql_insert_manda, $value_manda);
+         }
+     }
 
      if (sqlsrv_query($conn, $sql)) {
         $alert = '<script type="text/javascript">';

@@ -1,30 +1,59 @@
 <?php
-require '../connection/connection.php';
+function datetodb($date)
+//    23/04/2564
+{
+    $day = substr($date, 0, 2); // substrตัดข้อความที่เป็นสติง
+    $month = substr($date, 3, 2); //ตัดตำแหน่ง
+    $year = substr($date, 6) - 543;
+    $dateme = $year . '-' . $month . '-' . $day;
+    return $dateme; //return ส่งค่ากลับไป
+}
+?>
 
+<?php
+require '../connection/connection.php';
 $mode = $_REQUEST["mode"];
-// echo '<pre>';
-// print_r($_REQUEST);
-// exit();
+
 
 if ($mode == "insert_data") {
+    // echo '<pre>';
+    // print_r($mode);
+    // echo '</pre>';
     $standard_meet = $_REQUEST["standard_meet"];
     $standard_number = $_REQUEST["standard_number"];
     $standard_detail = $_REQUEST["standard_detail"];
-    $standard_mandatory = $_REQUEST["standard_mandatory"];
-    $standard_tacking = $_REQUEST["standard_tacking"];
-    $standard_note = $_REQUEST["standard_note"];
+    // $standard_tacking = $_REQUEST["standard_tacking"];
+    // $standard_note = $_REQUEST["standard_note"];
+    $standard_source = $_REQUEST["standard_source"];
+    // $standard_origin = $_REQUEST["standard_origin"];
+    $standard_survey = datetodb($_REQUEST["standard_survey"]);
+    if ($_REQUEST["standard_pick"] != "" && $_REQUEST["standard_pickup"] != "") {
+         $standard_pick = datetodb($_REQUEST["standard_pick"]);
+         $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
+    } else {
+        $standard_pick = "";
+        $standard_pickup = "";
+    }
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
-    $agency_id = $_REQUEST["agency_id"];
-    $type_id = $_REQUEST["type_id"];
+    $manda_id = $_REQUEST["manda_id"];
+    // echo '<pre>'.print_r($_REQUEST, 1).'</pre>';
+    // exit;
+    $agency_id = empty($_REQUEST["agency_id"]) ? [] : $_REQUEST['agency_id'];
+    // $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
-    $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number , standard_detail , standard_note , standard_status ,standard_create ) 
-      VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number','$standard_detail','$standard_note' , '7' , '$date')";
-
+    $status_id = empty($_REQUEST["status_id"]) ? [] : $_REQUEST['status_id'];
+    $sql = "INSERT INTO main_std (  standard_meet  , standard_number ,
+     standard_detail  , standard_status  , standard_source  , standard_survey ,
+     standard_pick , standard_pickup ) 
+      VALUES ('$standard_meet','$standard_number',
+      '$standard_detail'  , '$date' ,'$standard_source'  , '$standard_survey' ,
+      '$standard_pick' ,'$standard_pickup' )";
     //$conn->query($sql);
     //sqlsrv_close($conn);
-
+print_r($_REQUEST);
+exit;
     $stmt = sqlsrv_query($conn, $sql);
 
     $sqlmaxid = "SELECT @@IDENTITY AS 'Maxid'";
@@ -42,6 +71,49 @@ if ($mode == "insert_data") {
     // }
 
     //1
+
+       $countagency = count($agency_id);
+    //echo $test;
+
+
+    for ($i = 0; $i < $countagency; $i++) {
+        $agencyid =  $agency_id[$i];
+
+        //echo "<br>";
+
+        if (trim($agencyid) <> "") {
+            $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
+            VALUES ('$agencyid', '$standard_idtb')";
+
+            $stmt3 = sqlsrv_query($conn, $sql3);
+        }
+        // if ($stmt3 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ2";
+        // }
+
+
+        //echo "<br>";
+    }
+    
+    $countmanda = count($manda_id);
+    //echo $test;
+    for ($i = 0; $i < $countmanda; $i++) {
+        $mandaid =  $manda_id[$i];
+
+        //echo "<br>";
+
+        if (trim($mandaid) <> "") {
+            $sql7 = "INSERT INTO dimension_manda ( manda_id , standard_idtb  ) 
+            VALUES ('$mandaid', '$standard_idtb')";
+
+            $stmt7 = sqlsrv_query($conn, $sql7);
+        }
+    }
+   
+
+    //2
 
     $countgroup = count($group_id);
 
@@ -70,67 +142,26 @@ if ($mode == "insert_data") {
         //echo "<br>";
     }
 
-    //2
 
-    $countagency = count($agency_id);
-
-    //echo $test;
-
-
-    for ($i = 0; $i < $countagency; $i++) {
-        $agencyid =  $agency_id[$i];
-
-        //echo "<br>";
-
-        if (trim($agencyid) <> "") {
-            $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
-            VALUES ('$agencyid', '$standard_idtb')";
-
-            $stmt3 = sqlsrv_query($conn, $sql3);
-        }
-        // if ($stmt3 == false) {
-        //     die(print_r(sqlsrv_errors()));
-        // } else {
-        //     echo "บันทึกข้อมูลสำเร็จ2";
-        // }
-
-
-        //echo "<br>";
-    }
 
     //3
 
-    $counttype = count($type_id);
+    // $counttype = count($type_id);
+    // for ($i = 0; $i < $counttype; $i++) {
+    //     $typeid =  $type_id[$i];
+    //     if (trim($typeid) <> "") {
 
-    //echo $test; สร้างตัวแปรต่อ ทำอีฟ
+    //         $sql3 = "INSERT INTO dimension_type ( type_id , standard_idtb  ) 
+    //   VALUES ('$typeid', '$standard_idtb')";
 
-
-    for ($i = 0; $i < $counttype; $i++) {
-        $typeid =  $type_id[$i];
-
-        //echo "<br>";
-        if (trim($typeid) <> "") {
-
-            $sql3 = "INSERT INTO dimension_type ( type_id , standard_idtb  ) 
-      VALUES ('$typeid', '$standard_idtb')";
-
-            $stmt3 = sqlsrv_query($conn, $sql3);
-        }
-        // if ($stmt3 == false) {
-        //     die(print_r(sqlsrv_errors()));
-        // } else {
-        //     echo "บันทึกข้อมูลสำเร็จ3";
-        // }
+    //         $stmt3 = sqlsrv_query($conn, $sql3);
+    //     }
+    // }
 
 
-        //echo "<br>";
-    }
+
 
     $countboxdepartment = count($department_id);
-
-    //echo $test;
-
-
     for ($i = 0; $i < $countboxdepartment; $i++) {
         $departmentid =  $department_id[$i];
 
@@ -195,7 +226,6 @@ if ($mode == "insert_data") {
     $date = date("Y-m-d");
     //เพิ่มไฟล์
     $upload = $_FILES['fileupload'];
-     //print_r($upload);
     $count_upload = count($upload['name']);
 
     for ($i = 0; $i < $count_upload; $i++) {
@@ -217,19 +247,16 @@ if ($mode == "insert_data") {
             $newname        = $date .  $numrand . $type; //ตั้งชื่อใหม่เรียงวันที่ ตัวเลขที่สุม และนามสกุลไฟล์
             $path_copy      = $path . $newname; //กำหนดpath
             //$path_link      = "/fileupload/" . $newname; //กำหนดlink
-            //echo $file_name;
+            echo $file_name;
             // copy($fltem, $path_copy
             copy($file_tmp_name, $path_copy); //คัดลอกไwล์
 
             $sql_insert_file = "INSERT INTO dimension_file (fileupload , standard_idtb , upload_date) 
                     VALUES ( '$newname' , '$standard_idtb' , '$date')";
-            $insert_file = sqlsrv_query($conn, $sql_insert_file);
+            // $insert_file = sqlsrv_query($conn, $sql_insert_file);
         }
     }
-
-
-
-    if (sqlsrv_query($conn, $sql5)) {
+    if (sqlsrv_query($conn, $sql_insert_file)) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
         $alert .= 'window.location.href = "../index.php?page=status";';
@@ -239,5 +266,6 @@ if ($mode == "insert_data") {
     } else {
         echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
     }
+    
     sqlsrv_close($conn);
 }
