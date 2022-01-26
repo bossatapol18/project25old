@@ -2,7 +2,7 @@
 
 //fetch.php
 
-require 'connection.php' ;
+include '../../connection/connection.php' ;
 if($_POST["query"] != '')
 {
 	$search_array = explode(",", $_POST["query"]);

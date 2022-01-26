@@ -3,8 +3,9 @@ $page = (isset($_GET['page'])) ? $_GET['page'] : '';
 
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
-    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
-     FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss WHERE standard_idtb = '$standard_idtb' ";
+    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status , a.standard_source,c.source_id,c.source_name AS name_source
+     FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss
+     INNER JOIN source_tb c ON a.standard_source = c.source_id WHERE standard_idtb = '$standard_idtb' ";
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 }
@@ -17,41 +18,81 @@ $query3 = sqlsrv_query($conn, $sql3);
 
 ?>
 <section class="about section-bg">
-    <form action="" method="post" enctype=multipart/form-data style="font-size:18px;" >
+    <form action="" method="post" enctype=multipart/form-data style="font-size:18px;">
         <div class="container-sm">
             <div class="col-lg-12">
-                <h5 align="left" class="text-success">สถานะของเอกสารปัจจุบัน : <?php echo $result['name_status']; ?>
-                </h5>
-                <div class="section-title">
-                    <div align="right">
-                        <a href="?page=<?= $_GET['page'] ?>&function=update&standard_idtb=<?= $result['standard_idtb'] ?>"
-                            class="btn btn-sm btn-warning text-white" style="font-size:20px;">แก้ไขข้อมูลสถานะ</a>
-                            <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>"
-                            onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
-                            class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
-                        <a href="?page=delete&standard_idtb=<?= $result['standard_idtb'] ?>"
-                            onclick="return confirm('คุณต้องการลบเอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
-                            class="btn btn-sm btn-danger"style="font-size:20px;">ลบเอกสาร</a>
-                        <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;"
-                            onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
+                <h5 align="left" class="text-danger">ที่มาของเอกสาร : <?php echo $result['name_source']; ?>
+                    <h5 align="left" class="text-success">สถานะของเอกสารปัจจุบัน : <?php echo $result['name_status']; ?>
+                    </h5>
+                    <div class="section-title">
+                        <div align="right">
+                            <a href="?page=<?= $_GET['page'] ?>&function=update&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn btn-sm btn-warning text-white" style="font-size:20px;">แก้ไขข้อมูลสถานะ</a>
+                                <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>" onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')" class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
+                            <a href="?page=delete&standard_idtb=<?= $result['standard_idtb'] ?>" onclick="return confirm('คุณต้องการลบเอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')" class="btn btn-sm btn-danger" style="font-size:20px;">ลบเอกสาร</a>
+                            <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
+                        </div>
+                        <br>
+                        <h2 class="font-mirt">เอกสารทั้งหมด</h2>
+                        <h4 class="font-mirt">หมายเลขเอกสาร : <?php echo $result['standard_idtb'] ?></h4>
                     </div>
-                    <h2 class="font-mirt">เอกสารทั้งหมด</h2>
-                    <h4 class="font-mirt">หมายเลขเอกสาร : <?php echo $result['standard_idtb'] ?></h4>
-                </div>
             </div>
             <div class="section-title">
-                <h5 align="right">วันที่แต่งตั้ง : <?php echo dateThai($result['standard_day']); ?></h5>
+                <h5 align="right">วันที่แต่งตั้ง : <?php echo DateThai($result['standard_day']); ?></h5>
             </div>
             <div class="row text-center">
-                <div class="col-lg-6 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <h4 class="font-mirt">วาระจากในที่ประชุมสมอ : <?php echo $result['standard_meet'] ?></h4>
                 </div>
-                <div class="col-lg-6 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                    <h4 clas    s="font-mirt">เลขที่มอก : <?php echo $result['standard_number'] ?></h4>
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <h4 clas s="font-mirt">เลขที่มอก : <?php echo $result['standard_number'] ?></h4>
+                </div>
+                <div class="col-lg-4 col-md-4 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <h4 clas s="font-mirt">วันที่ประชุม สมอ. : <?php echo $result['standard_survey'] ?></h4>
                 </div>
             </div>
             <hr>
             <div class="row">
+
+                <?php if ($result['standard_source'] == 1) : ?>
+                    <div class="col-sm-6">
+                        <div class="card mb-3" style="max-width:100%">
+                            <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
+                            <div class="card-body">                
+                                 <a>ที่มาของการประชุม</a>
+                                 <p class="card-text"><?php echo $result['standard_meet']; ?> </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+
+                <?php if ($result['standard_source'] == 2) : ?>
+                    <div class="col-sm-6">
+                        <div class="card mb-3" style="max-width:100%">
+                            <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
+                            <div class="card-body">
+                                <a>วันที่รับหนังสือจากสมอ.</a>
+                                <p class="card-text"><?php echo datethai(date($result['standard_pick'])); ?> </p>
+                                <a>วันที่ส่งเอกสารออกไป สมอ.</a>
+                                <p class="card-text"><?php echo datethai($result['standard_pickup']); ?> </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($result['standard_source'] == 3) : ?>
+                    <div class="col-sm-6">
+                        <div class="card mb-3" style="max-width:100%">
+                            <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
+                            <div class="card-body">
+                                <a>วันที่ประกาศราชกิจจานุเบกษา</a>
+                                <p class="card-text"><?php echo datethai($result['standard_gazet']); ?> </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+
                 <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">ชื่อมาตรฐาน</div>
@@ -61,23 +102,23 @@ $query3 = sqlsrv_query($conn, $sql3);
                     </div>
                 </div>
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="card  mb-3" style="max-width: 100%">
                         <div class="card-header text-white bg-primary ">มาตรฐานบังคับ</div>
                         <div class="card-body">
                             <p class="card-text"><?php echo $result['standard_mandatory']; ?> </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">หมายเลข tacking</div>
                         <div class="card-body">
                             <p class="card-text"><?php echo $result['standard_tacking']; ?> </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
@@ -98,11 +139,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                         $sql = "SELECT * FROM dimension_group WHERE standard_idtb  = '$standarsidtb' ";
                         $query1 = sqlsrv_query($conn, $sql);
                         while ($result = sqlsrv_fetch_array($query1, SQLSRV_FETCH_ASSOC)) { ?>
-                        <?php $group =  $result['group_id']; ?>
-                        <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;"
-                            disabled>
-                            <option value="">กรุณาเลือกกลุ่มผลิตภัณฑ์</option>
-                            <?php
+                            <?php $group =  $result['group_id']; ?>
+                            <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกกลุ่มผลิตภัณฑ์</option>
+                                <?php
                                 $sql2 = "SELECT * FROM group_tb";
                                 $query2 = sqlsrv_query($conn, $sql2);
                                 while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) {
@@ -114,10 +154,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                                     }
                                 ?>
 
-                            <option value="<?php echo $result2['group_id'];  ?>" <?php echo $c; ?>>
-                                <?php echo $result2['group_name']; ?></option>
-                            <?php } ?>
-                        </select>
+                                    <option value="<?php echo $result2['group_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result2['group_name']; ?></option>
+                                <?php } ?>
+                            </select>
                         <?php } ?>
 
                     </div>
@@ -132,11 +172,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                         $sql2 = "SELECT * FROM dimension_agency WHERE standard_idtb  = '$standarsidtb' ";
                         $query2 = sqlsrv_query($conn, $sql2);
                         while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                        <?php $agency =  $result2['agency_id']; ?>
-                        <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;"
-                            disabled>
-                            <option value="">กรุณาเลือกหน่วยงานที่ทดสอบ</option>
-                            <?php
+                            <?php $agency =  $result2['agency_id']; ?>
+                            <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกหน่วยงานที่ทดสอบ</option>
+                                <?php
                                 $sql22 = "SELECT * FROM agency_tb";
                                 $query22 = sqlsrv_query($conn, $sql22);
                                 while ($result22 = sqlsrv_fetch_array($query22, SQLSRV_FETCH_ASSOC)) {
@@ -148,10 +187,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                                     }
                                 ?>
 
-                            <option value="<?php echo $result22['agency_id'];  ?>" <?php echo $c; ?>>
-                                <?php echo $result22['agency_name']; ?></option>
-                            <?php } ?>
-                        </select>
+                                    <option value="<?php echo $result22['agency_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result22['agency_name']; ?></option>
+                                <?php } ?>
+                            </select>
                         <?php } ?>
                     </div>
                 </div>
@@ -166,11 +205,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                         $sql3 = "SELECT * FROM dimension_department WHERE standard_idtb  = '$standarsidtb' ";
                         $query3 = sqlsrv_query($conn, $sql3);
                         while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                        <?php $department =  $result3['department_id']; ?>
-                        <select class="form-control" name="department_id[]" id="department_id"
-                            style="height: unset !important;" disabled>
-                            <option value="">กรุณาเลือกหน่วยงานที่ขอ</option>
-                            <?php
+                            <?php $department =  $result3['department_id']; ?>
+                            <select class="form-control" name="department_id[]" id="department_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกหน่วยงานที่ขอ</option>
+                                <?php
                                 $sql33 = "SELECT * FROM department_tb";
                                 $query33 = sqlsrv_query($conn, $sql33);
                                 while ($result33 = sqlsrv_fetch_array($query33, SQLSRV_FETCH_ASSOC)) {
@@ -182,16 +220,48 @@ $query3 = sqlsrv_query($conn, $sql3);
                                     }
                                 ?>
 
-                            <option value="<?php echo $result33['department_id'];  ?>" <?php echo $c; ?>>
-                                <?php echo $result33['department_name']; ?></option>
-                            <?php } ?>
-                        </select>
+                                    <option value="<?php echo $result33['department_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result33['department_name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
+                    </div>
+                </div>
+
+                   <!-- หลายฟอร์ม -->
+                   <div class="col-sm-6">
+                    <div class="card   mb-3" style="max-width:100%">
+                        <div class="card-header text-white bg-primary">ประเภทมาตรฐาน</div>
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql3 = "SELECT * FROM dimension_manda WHERE standard_idtb  = '$standarsidtb' ";
+                        $query4 = sqlsrv_query($conn, $sql3);
+                        while ($result3 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
+                            <?php $manda =  $result3['manda_id']; ?>
+                            <select class="form-control" name="manda_id[]" id="manda_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกประเภทมาตรฐาน</option>
+                                <?php
+                                $sql33 = "SELECT * FROM manda_tb";
+                                $query43 = sqlsrv_query($conn, $sql33);
+                                while ($result43 = sqlsrv_fetch_array($query43, SQLSRV_FETCH_ASSOC)) {
+                                    $manda2 =  $result43['manda_id'];
+                                    if ($manda == $manda2) {
+                                        $c = "selected";
+                                    } else {
+                                        $c = "";
+                                    }
+                                ?>
+
+                                    <option value="<?php echo $result43['manda_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result43['manda_name']; ?></option>
+                                <?php } ?>
+                            </select>
                         <?php } ?>
                     </div>
                 </div>
 
 
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
                         <div class="card-header text-white bg-primary">ประเภทผลิตภัณฑ์</div>
                         <?php
@@ -199,11 +269,10 @@ $query3 = sqlsrv_query($conn, $sql3);
                         $sql4 = "SELECT * FROM dimension_type WHERE standard_idtb  = '$standarsidtb' ";
                         $query4 = sqlsrv_query($conn, $sql4);
                         while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
-                        <?php $type =  $result4['type_id']; ?>
-                        <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;"
-                            disabled>
-                            <option value="">กรุณาเลือกประเภทผลิตภัณฑ์</option>
-                            <?php
+                            <?php $type =  $result4['type_id']; ?>
+                            <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;" disabled>
+                                <option value="">กรุณาเลือกประเภทผลิตภัณฑ์</option>
+                                <?php
                                 $sql44 = "SELECT * FROM type_tb";
                                 $query44 = sqlsrv_query($conn, $sql44);
                                 while ($result44 = sqlsrv_fetch_array($query44, SQLSRV_FETCH_ASSOC)) {
@@ -215,13 +284,13 @@ $query3 = sqlsrv_query($conn, $sql3);
                                     }
                                 ?>
 
-                            <option value="<?php echo $result44['type_id'];  ?>" <?php echo $c; ?>>
-                                <?php echo $result44['type_name']; ?></option>
-                            <?php } ?>
-                        </select>
+                                    <option value="<?php echo $result44['type_id'];  ?>" <?php echo $c; ?>>
+                                        <?php echo $result44['type_name']; ?></option>
+                                <?php } ?>
+                            </select>
                         <?php } ?>
                     </div>
-                </div>
+                </div> -->
 
 
                 <!-- หลายฟอร์ม -->
@@ -234,16 +303,16 @@ $query3 = sqlsrv_query($conn, $sql3);
 
                                 <div class="col-md-8">
                                     <div class="form-group mb-2 input-group">
-                                        <?php 
-                                        $i=1;
-                                                        $standarsidtb = $_REQUEST['standard_idtb'];
-                                                        $sql5 = "SELECT * FROM dimension_file WHERE standard_idtb  = '$standarsidtb' ";
-                                                        $query5 = sqlsrv_query($conn,$sql5);
-                                                        while ($result5 = sqlsrv_fetch_array($query5, SQLSRV_FETCH_ASSOC)) { ?>
-                                        <a href='./fileupload/<?=$result5['fileupload'] ;?>'>
-                                        <?php echo $i++ . ")" .$result5['fileupload'] ; ?>
-                                        <br>
-                                        </a>
+                                        <?php
+                                        $i = 1;
+                                        $standarsidtb = $_REQUEST['standard_idtb'];
+                                        $sql5 = "SELECT * FROM dimension_file WHERE standard_idtb  = '$standarsidtb' ";
+                                        $query5 = sqlsrv_query($conn, $sql5);
+                                        while ($result5 = sqlsrv_fetch_array($query5, SQLSRV_FETCH_ASSOC)) { ?>
+                                            <a href='./fileupload/<?= $result5['fileupload']; ?>'>
+                                                <?php echo $i++ . ")" . $result5['fileupload']; ?>
+                                                <br>
+                                            </a>
                                         <?php } ?>
                                     </div>
                                 </div>

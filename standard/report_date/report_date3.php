@@ -113,7 +113,7 @@ function datetodb($date)
 
                             <?php
                             $i = 1;
-                            require 'connection.php';
+                            include '../../connection/connection.php' ;
                             require 'date.php';
 
                             if (isset($_GET['from_date']) && isset($_GET['to_date'])) {

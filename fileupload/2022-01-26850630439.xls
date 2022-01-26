@@ -1,0 +1,132 @@
+
+
+<!--  เรียกใช้  picker_date.js สำหรับสร้างตัวเลือก ปฎิทิน -->
+<script src="https://รับเขียนโปรแกรม.net/picker_date/picker_date.js"></script><!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบติดตามเอกสาร</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<style>
+    .ii{
+        display: none;
+    }
+</style>
+<body>
+
+    
+
+
+
+    <center>
+        <form action="" method="post" enctype=multipart/form-data>
+            <div class=" mb-3">
+                <table border="1" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th rowspan="3" style="background-color: #3cb371;">ลำดับที่</th>
+                            <th rowspan="3" style="background-color: #3cb371;">วาระจากในที่ประชุมสมอ.</th>
+                            <th rowspan="3" style="background-color: #3cb371;">เลขที่มอก.</th>
+                            <th rowspan="3" style="background-color: #3cb371;">ชื่อมาตรฐาน</th>
+                            <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่สามารถทดสอบได้</th>
+                            <th rowspan="3" style="background-color: #3cb371;">ประเภทมาตรฐาน</th>
+                            <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่ขอ</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                        <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                                                    </tr>
+                        <tr>
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : มกราคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : กุมภาพันธ์</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : มีนาคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : เมษายน</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : พฤษภาคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : มิถุนายน</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : กรกฎาคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : สิงหาคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : กันยายน</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : ตุลาคม</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : พฤศจิกายน</td> 
+                                                        <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : ธันวาคม</td> 
+                                                    </tr>
+                        <tr>
+                                                        <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                       <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
+                                                   </tr>
+                    </thead>
+                       
+                    <tbody>
+                                                <tr class="text-center">
+                            <td class="align-middle">1</td>
+                            <td class="align-middle">1</td>
+                            <td class="align-middle">3</td>
+                            <td class="align-middle">222333</td>
+                                 
+                                
+                                  
+                                  <td>                                   1.สถาบันเหล็กและเหล็กกล้าฯ แห่งประเทศไทย<br>
+                                 
+                                 
+                            </td>
+                            <td>
+                                                                    1.ศนส.<br>
+                                                            </td>
+                            <td class="align-middle">4 มกราคม 2565</td>
+                            <td class="align-middle">รับหนังสือจากสมอ. </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </center>
+</body>
+
+</html>
