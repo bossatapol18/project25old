@@ -4,13 +4,13 @@ $statuss_name = (isset($_GET['statuss_name'])) ? $_GET['statuss_name'] : '';
 if (isset($_POST) && !empty($_POST)) {
     $id_statuss = $_POST['id_statuss'];
     $statuss_name = $_POST['statuss_name'];
-    $sql = "INSERT INTO select_tb VALUES (?,?) ";
+    $sql = "INSERT INTO select_status VALUES (?,?) ";
     $params = array($id_statuss , $statuss_name);
     $sss = sqlsrv_query($conn, $sql, $params);
     if ($sss = true) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
-        $alert .= 'window.location.href = "?page=add_type";';
+        $alert .= 'window.location.href = "?page=add_status";';
     
         $alert .= '</script>';
         echo $alert;

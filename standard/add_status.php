@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST) && !empty($_POST)) {
-    $status_id = $_POST['status_id'];
-    $status_name = $_POST['status_name'];
+    $id_statuss = $_POST['id_statuss'];
+    $statuss_name = $_POST['statuss_name'];
 }
 $sql = "SELECT * FROM select_status ";
 $query = sqlsrv_query($conn, $sql);
@@ -37,7 +37,7 @@ $query = sqlsrv_query($conn, $sql);
                                         <div class="mb-4">
                                             <a href="?page=<?= $_GET['page'] ?>&function=update&id_statuss=<?= $data['id_statuss'] ?>" class="btn btn-sm btn-warning">แก้ไข</a>
 
-                                            <a href="?page=<?= $_GET['page'] ?>&function=delete&id_statuss=<?= $data['id_statuss'] ?>" onclick="return confirm('คุณต้องการลบประเภทนี้ : <?= $data['type_name'] ?> หรือไม่ ??')" class="btn btn-sm btn-danger">ลบ</a>
+                                            <a href="?page=<?= $_GET['page'] ?>&function=delete&id_statuss=<?= $data['id_statuss'] ?>" onclick="return confirm('คุณต้องการลบประเภทนี้ : <?= $data['statuss_name'] ?> หรือไม่ ??')" class="btn btn-sm btn-danger">ลบ</a>
                                     </td>
 
                 </div>
